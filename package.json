@@ -8,10 +8,9 @@
     "url": ""
   },
   "dependencies": {
-		"node-twitter": "latest",
 		"underscore": "latest",
 		"express": "latest",
-		"socket.io": "latest"
+    "ws":"latest"
 	},
   "devDependencies": {},
   "optionalDependencies": {},
