@@ -1,0 +1,21 @@
+{
+  "author": "Thomas Fritz <t.fritz@semantic-web.at>",
+  "name": "LOD2RealtimeTwitter",
+  "description": "Displays Tweets regarding LOD2 EU project in realtime",
+  "version": "0.0.1",
+  "homepage": "http://semantic-web.at",
+  "repository": {
+    "url": ""
+  },
+  "dependencies": {
+		"node-twitter": "latest",
+		"underscore": "latest",
+		"express": "latest",
+		"socket.io": "latest"
+	},
+  "devDependencies": {},
+  "optionalDependencies": {},
+  "engines": {
+    "node": "*"
+  }
+}
