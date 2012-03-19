@@ -1,0 +1,19 @@
+article {
+	clear: both;
+	margin-bottom:5px;
+}
+
+article.tweet div.user {
+	float:left;
+	width: 55px;
+}
+
+article.tweet div.user .avatar img {
+	max-width: 60px;
+	max-height: 60px;
+	overflow: hidden;
+}
+
+article.tweet div.content {
+	
+}

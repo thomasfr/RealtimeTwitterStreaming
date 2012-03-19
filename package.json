@@ -10,7 +10,10 @@
   "dependencies": {
 		"underscore": "latest",
 		"express": "latest",
-    "ws":"latest"
+    "ws": "latest",
+    "hogan.js" : "latest",
+    "hiredis": "latest",
+    "redis": "latest"
 	},
   "devDependencies": {},
   "optionalDependencies": {},

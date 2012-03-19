@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LOD2 Realtime Twitter Status</title>
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/bootstrap-responsive.min.css">
+<link rel="stylesheet" href="/css/style.css">
+<style>
+article.tweet {
+	margin-bottom:10px;
+}
+</style>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/hogan.min.js"></script>
+<script>
+(function() {
+	function prepareTemplates() {
+		var templates = {};
+		$('script[data-template]').each(function(index) {
+			templates[$(this).attr('data-template')] = Hogan.compile($(this).html());
+		});
+		return templates;
+	}
+	$(function() {
+		var templates = prepareTemplates();
+		var WebSocket = window.WebSocket || window.MozWebSocket;
+		var ws = new WebSocket("ws://127.0.0.1:3000");
+		var container = $('#container');
+		ws.onmessage = function(message) {
+			try {
+				var message = JSON.parse(message.data).tweet;
+				var tweetEl = templates.tweet.render(message);
+				container.prepend(tweetEl);
+			}
+			catch(e) {
+				console.log("ERROR", e);
+			}
+		}
+	});
+})();
+</script>
+</head>
+<body>
+<div class="container" id="container">
+
+</div>
+<script type="text/x-mustache" data-template="tweet">
+<article class="tweet clearfix" id="tweet-{{id}}">
+	{{#user}}
+		<div class="user" data-user-id="{{id}}">
+			<div class="avatar"><img src="{{profile_image_url}}"/></div>
+		</div>
+	{{/user}}
+	<div class="content">
+		<a href="https://twitter.com/#!/{{user.screen_name}}" target="_blank">{{user.screen_name}}</a>:&nbsp;{{{text}}}
+	</div>
+</article>
+</script>
+</body>
+</html>
